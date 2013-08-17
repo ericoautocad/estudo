@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+
+    <!-- chamando a biblioteca do bootstrap -->
+    @Styles.Render("~/Content/bootstrap")
+
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="content" class="container" >
+        <div class="row" id="topo" >
+            <!-- Aqui será o topo -->
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3">
+                <!-- Aqui será o menu -->
+                <ul class="nav nav-pills nav-stacked" id="menu_principal">
+                        <li class="active" ><a href="#" >Dashboard</a></li>
+                        <li class="" ><a href="#" >Atendimentos</a></li>
+                        <li class=""><a href="/servico/index" >Serviços</a></li>
+                        <li class=""><a href="/cliente/index" >Clientes</a></li>
+                        <li class=""><a href="/funcionario/index" >Funcionarios</a></li>
+                        <li><a href="/promocao/index" >Promoções</a></li>
+                        
+                        <li><a href="/material/index" >Materiais</a></li>
+
+                        
+                    </ul>
+            </div>
+
+            <div class="col-lg-9" id="conteudo">
+                <!-- Aqui será o conteudo -->
+                @RenderBody()
+
+            </div>
+        </div>
+    </div>
+    
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

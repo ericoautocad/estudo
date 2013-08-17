@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="sad_cabeleireiroModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="sad_cabeleireiroModelStoreContainer">
+          <EntitySet Name="Atendimento" EntityType="sad_cabeleireiroModel.Store.Atendimento" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Cliente" EntityType="sad_cabeleireiroModel.Store.Cliente" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Funcionario" EntityType="sad_cabeleireiroModel.Store.Funcionario" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Item_atendimento" EntityType="sad_cabeleireiroModel.Store.Item_atendimento" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Servico" EntityType="sad_cabeleireiroModel.Store.Servico" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="sad_cabeleireiroModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Atendimento_Cliente" Association="sad_cabeleireiroModel.Store.FK_Atendimento_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Atendimento" EntitySet="Atendimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Atendimento_Funcionario" Association="sad_cabeleireiroModel.Store.FK_Atendimento_Funcionario">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="Atendimento" EntitySet="Atendimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_atendimento_Atendimento" Association="sad_cabeleireiroModel.Store.FK_Item_atendimento_Atendimento">
+            <End Role="Servico" EntitySet="Servico" />
+            <End Role="Item_atendimento" EntitySet="Item_atendimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_atendimento_Atendimento1" Association="sad_cabeleireiroModel.Store.FK_Item_atendimento_Atendimento1">
+            <End Role="Atendimento" EntitySet="Atendimento" />
+            <End Role="Item_atendimento" EntitySet="Item_atendimento" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Atendimento">
+          <Key>
+            <PropertyRef Name="pk_id_atendimento" />
+          </Key>
+          <Property Name="pk_id_atendimento" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="valor" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="data_created" Type="datetime" />
+          <Property Name="data" Type="datetime" />
+          <Property Name="hora" Type="time" />
+          <Property Name="fk_id_cliente" Type="int" />
+          <Property Name="fk_id_funcionario" Type="int" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="pk_id_cliente" />
+          </Key>
+          <Property Name="pk_id_cliente" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="varchar" MaxLength="60" />
+          <Property Name="telefone" Type="varchar" MaxLength="20" />
+          <Property Name="email" Type="varchar" MaxLength="60" />
+          <Property Name="sexo" Type="varchar" MaxLength="20" />
+          <Property Name="data_nascimento" Type="date" />
+        </EntityType>
+        <EntityType Name="Funcionario">
+          <Key>
+            <PropertyRef Name="pk_id_funcionario" />
+          </Key>
+          <Property Name="pk_id_funcionario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="varchar" MaxLength="60" />
+          <Property Name="telefone" Type="varchar" MaxLength="20" />
+          <Property Name="email" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="Item_atendimento">
+          <Key>
+            <PropertyRef Name="pk_id_item_atendimento" />
+          </Key>
+          <Property Name="pk_id_item_atendimento" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="quantidade" Type="int" />
+          <Property Name="fk_id_atendimento" Type="int" />
+          <Property Name="valor" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="fk_id_servico" Type="int" />
+        </EntityType>
+        <EntityType Name="Servico">
+          <Key>
+            <PropertyRef Name="pk_id_servico" />
+          </Key>
+          <Property Name="pk_id_servico" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="varchar" MaxLength="100" />
+          <Property Name="valor" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="tempo_medio_execucao" Type="float" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Atendimento_Cliente">
+          <End Role="Cliente" Type="sad_cabeleireiroModel.Store.Cliente" Multiplicity="0..1" />
+          <End Role="Atendimento" Type="sad_cabeleireiroModel.Store.Atendimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="pk_id_cliente" />
+            </Principal>
+            <Dependent Role="Atendimento">
+              <PropertyRef Name="fk_id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Atendimento_Funcionario">
+          <End Role="Funcionario" Type="sad_cabeleireiroModel.Store.Funcionario" Multiplicity="0..1" />
+          <End Role="Atendimento" Type="sad_cabeleireiroModel.Store.Atendimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="pk_id_funcionario" />
+            </Principal>
+            <Dependent Role="Atendimento">
+              <PropertyRef Name="fk_id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_atendimento_Atendimento">
+          <End Role="Servico" Type="sad_cabeleireiroModel.Store.Servico" Multiplicity="0..1" />
+          <End Role="Item_atendimento" Type="sad_cabeleireiroModel.Store.Item_atendimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servico">
+              <PropertyRef Name="pk_id_servico" />
+            </Principal>
+            <Dependent Role="Item_atendimento">
+              <PropertyRef Name="fk_id_servico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_atendimento_Atendimento1">
+          <End Role="Atendimento" Type="sad_cabeleireiroModel.Store.Atendimento" Multiplicity="0..1" />
+          <End Role="Item_atendimento" Type="sad_cabeleireiroModel.Store.Item_atendimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Atendimento">
+              <PropertyRef Name="pk_id_atendimento" />
+            </Principal>
+            <Dependent Role="Item_atendimento">
+              <PropertyRef Name="fk_id_atendimento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sad_cabeleireiroModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="sad_cabeleireiroEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Atendimento" EntityType="sad_cabeleireiroModel.Atendimento" />
+          <EntitySet Name="Cliente" EntityType="sad_cabeleireiroModel.Cliente" />
+          <EntitySet Name="Funcionario" EntityType="sad_cabeleireiroModel.Funcionario" />
+          <EntitySet Name="Item_atendimento" EntityType="sad_cabeleireiroModel.Item_atendimento" />
+          <EntitySet Name="Servico" EntityType="sad_cabeleireiroModel.Servico" />
+          <EntitySet Name="sysdiagrams" EntityType="sad_cabeleireiroModel.sysdiagrams" />
+          <AssociationSet Name="FK_Atendimento_Cliente" Association="sad_cabeleireiroModel.FK_Atendimento_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Atendimento" EntitySet="Atendimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Atendimento_Funcionario" Association="sad_cabeleireiroModel.FK_Atendimento_Funcionario">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="Atendimento" EntitySet="Atendimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_atendimento_Atendimento1" Association="sad_cabeleireiroModel.FK_Item_atendimento_Atendimento1">
+            <End Role="Atendimento" EntitySet="Atendimento" />
+            <End Role="Item_atendimento" EntitySet="Item_atendimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_atendimento_Atendimento" Association="sad_cabeleireiroModel.FK_Item_atendimento_Atendimento">
+            <End Role="Servico" EntitySet="Servico" />
+            <End Role="Item_atendimento" EntitySet="Item_atendimento" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Atendimento">
+          <Key>
+            <PropertyRef Name="pk_id_atendimento" />
+          </Key>
+          <Property Name="pk_id_atendimento" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="valor" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="data_created" Type="DateTime" Precision="3" />
+          <Property Name="data" Type="DateTime" Precision="3" />
+          <Property Name="hora" Type="Time" Precision="7" />
+          <Property Name="fk_id_cliente" Type="Int32" />
+          <Property Name="fk_id_funcionario" Type="Int32" />
+          <NavigationProperty Name="Cliente" Relationship="sad_cabeleireiroModel.FK_Atendimento_Cliente" FromRole="Atendimento" ToRole="Cliente" />
+          <NavigationProperty Name="Funcionario" Relationship="sad_cabeleireiroModel.FK_Atendimento_Funcionario" FromRole="Atendimento" ToRole="Funcionario" />
+          <NavigationProperty Name="Item_atendimento" Relationship="sad_cabeleireiroModel.FK_Item_atendimento_Atendimento1" FromRole="Atendimento" ToRole="Item_atendimento" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="pk_id_cliente" />
+          </Key>
+          <Property Name="pk_id_cliente" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="60" Unicode="false" FixedLength="false" />
+          <Property Name="telefone" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="email" Type="String" MaxLength="60" Unicode="false" FixedLength="false" />
+          <Property Name="sexo" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="data_nascimento" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Atendimento" Relationship="sad_cabeleireiroModel.FK_Atendimento_Cliente" FromRole="Cliente" ToRole="Atendimento" />
+        </EntityType>
+        <EntityType Name="Funcionario">
+          <Key>
+            <PropertyRef Name="pk_id_funcionario" />
+          </Key>
+          <Property Name="pk_id_funcionario" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="60" Unicode="false" FixedLength="false" />
+          <Property Name="telefone" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="email" Type="String" MaxLength="60" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Atendimento" Relationship="sad_cabeleireiroModel.FK_Atendimento_Funcionario" FromRole="Funcionario" ToRole="Atendimento" />
+        </EntityType>
+        <EntityType Name="Item_atendimento">
+          <Key>
+            <PropertyRef Name="pk_id_item_atendimento" />
+          </Key>
+          <Property Name="pk_id_item_atendimento" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="quantidade" Type="Int32" />
+          <Property Name="fk_id_atendimento" Type="Int32" />
+          <Property Name="valor" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="fk_id_servico" Type="Int32" />
+          <NavigationProperty Name="Atendimento" Relationship="sad_cabeleireiroModel.FK_Item_atendimento_Atendimento1" FromRole="Item_atendimento" ToRole="Atendimento" />
+          <NavigationProperty Name="Servico" Relationship="sad_cabeleireiroModel.FK_Item_atendimento_Atendimento" FromRole="Item_atendimento" ToRole="Servico" />
+        </EntityType>
+        <EntityType Name="Servico">
+          <Key>
+            <PropertyRef Name="pk_id_servico" />
+          </Key>
+          <Property Name="pk_id_servico" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="valor" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="tempo_medio_execucao" Type="Double" />
+          <NavigationProperty Name="Item_atendimento" Relationship="sad_cabeleireiroModel.FK_Item_atendimento_Atendimento" FromRole="Servico" ToRole="Item_atendimento" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Atendimento_Cliente">
+          <End Role="Cliente" Type="sad_cabeleireiroModel.Cliente" Multiplicity="0..1" />
+          <End Role="Atendimento" Type="sad_cabeleireiroModel.Atendimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="pk_id_cliente" />
+            </Principal>
+            <Dependent Role="Atendimento">
+              <PropertyRef Name="fk_id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Atendimento_Funcionario">
+          <End Role="Funcionario" Type="sad_cabeleireiroModel.Funcionario" Multiplicity="0..1" />
+          <End Role="Atendimento" Type="sad_cabeleireiroModel.Atendimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="pk_id_funcionario" />
+            </Principal>
+            <Dependent Role="Atendimento">
+              <PropertyRef Name="fk_id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_atendimento_Atendimento1">
+          <End Role="Atendimento" Type="sad_cabeleireiroModel.Atendimento" Multiplicity="0..1" />
+          <End Role="Item_atendimento" Type="sad_cabeleireiroModel.Item_atendimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Atendimento">
+              <PropertyRef Name="pk_id_atendimento" />
+            </Principal>
+            <Dependent Role="Item_atendimento">
+              <PropertyRef Name="fk_id_atendimento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_atendimento_Atendimento">
+          <End Role="Servico" Type="sad_cabeleireiroModel.Servico" Multiplicity="0..1" />
+          <End Role="Item_atendimento" Type="sad_cabeleireiroModel.Item_atendimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servico">
+              <PropertyRef Name="pk_id_servico" />
+            </Principal>
+            <Dependent Role="Item_atendimento">
+              <PropertyRef Name="fk_id_servico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sad_cabeleireiroModelStoreContainer" CdmEntityContainer="sad_cabeleireiroEntities">
+          <EntitySetMapping Name="Atendimento">
+            <EntityTypeMapping TypeName="sad_cabeleireiroModel.Atendimento">
+              <MappingFragment StoreEntitySet="Atendimento">
+                <ScalarProperty Name="pk_id_atendimento" ColumnName="pk_id_atendimento" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="data_created" ColumnName="data_created" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="fk_id_cliente" ColumnName="fk_id_cliente" />
+                <ScalarProperty Name="fk_id_funcionario" ColumnName="fk_id_funcionario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="sad_cabeleireiroModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="pk_id_cliente" ColumnName="pk_id_cliente" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="data_nascimento" ColumnName="data_nascimento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Funcionario">
+            <EntityTypeMapping TypeName="sad_cabeleireiroModel.Funcionario">
+              <MappingFragment StoreEntitySet="Funcionario">
+                <ScalarProperty Name="pk_id_funcionario" ColumnName="pk_id_funcionario" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item_atendimento">
+            <EntityTypeMapping TypeName="sad_cabeleireiroModel.Item_atendimento">
+              <MappingFragment StoreEntitySet="Item_atendimento">
+                <ScalarProperty Name="pk_id_item_atendimento" ColumnName="pk_id_item_atendimento" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+                <ScalarProperty Name="fk_id_atendimento" ColumnName="fk_id_atendimento" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="fk_id_servico" ColumnName="fk_id_servico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servico">
+            <EntityTypeMapping TypeName="sad_cabeleireiroModel.Servico">
+              <MappingFragment StoreEntitySet="Servico">
+                <ScalarProperty Name="pk_id_servico" ColumnName="pk_id_servico" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="tempo_medio_execucao" ColumnName="tempo_medio_execucao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="sad_cabeleireiroModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SadCabelereiro.Models.Servico>
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container">
+
+    <div class="row">
+    <h2>Listando Serviços</h2>
+    </div>
+
+    <div class="row" style="background: #fff">
+        @Html.ActionLink("Adicionar novo", "Create", "Servico")
+        
+        
+
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>Descrição</td>
+                        <td>Valor</td>
+                        <td>Tempo médio de execução</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.pk_id_servico</td>
+                            <td>@item.descricao</td>
+                            <td>@item.valor</td>
+                            <td>@item.tempo_medio_execucao</td>
+                            <td>@Html.ActionLink("Listar", "/Index", new {id = item.pk_id_servico})</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        
+
+    </div>
+</div>

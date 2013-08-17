@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sad_cabeleireiroModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="sad_cabeleireiroModelStoreContainer">
+    <EntitySet Name="Atendimento" EntityType="sad_cabeleireiroModel.Store.Atendimento" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Cliente" EntityType="sad_cabeleireiroModel.Store.Cliente" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Funcionario" EntityType="sad_cabeleireiroModel.Store.Funcionario" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Item_atendimento" EntityType="sad_cabeleireiroModel.Store.Item_atendimento" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Servico" EntityType="sad_cabeleireiroModel.Store.Servico" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="sad_cabeleireiroModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Atendimento_Cliente" Association="sad_cabeleireiroModel.Store.FK_Atendimento_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Atendimento" EntitySet="Atendimento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Atendimento_Funcionario" Association="sad_cabeleireiroModel.Store.FK_Atendimento_Funcionario">
+      <End Role="Funcionario" EntitySet="Funcionario" />
+      <End Role="Atendimento" EntitySet="Atendimento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_atendimento_Atendimento" Association="sad_cabeleireiroModel.Store.FK_Item_atendimento_Atendimento">
+      <End Role="Servico" EntitySet="Servico" />
+      <End Role="Item_atendimento" EntitySet="Item_atendimento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_atendimento_Atendimento1" Association="sad_cabeleireiroModel.Store.FK_Item_atendimento_Atendimento1">
+      <End Role="Atendimento" EntitySet="Atendimento" />
+      <End Role="Item_atendimento" EntitySet="Item_atendimento" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Atendimento">
+    <Key>
+      <PropertyRef Name="pk_id_atendimento" />
+    </Key>
+    <Property Name="pk_id_atendimento" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="valor" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="data_created" Type="datetime" />
+    <Property Name="data" Type="datetime" />
+    <Property Name="hora" Type="time" />
+    <Property Name="fk_id_cliente" Type="int" />
+    <Property Name="fk_id_funcionario" Type="int" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="pk_id_cliente" />
+    </Key>
+    <Property Name="pk_id_cliente" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="varchar" MaxLength="60" />
+    <Property Name="telefone" Type="varchar" MaxLength="20" />
+    <Property Name="email" Type="varchar" MaxLength="60" />
+    <Property Name="sexo" Type="varchar" MaxLength="20" />
+    <Property Name="data_nascimento" Type="date" />
+  </EntityType>
+  <EntityType Name="Funcionario">
+    <Key>
+      <PropertyRef Name="pk_id_funcionario" />
+    </Key>
+    <Property Name="pk_id_funcionario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="varchar" MaxLength="60" />
+    <Property Name="telefone" Type="varchar" MaxLength="20" />
+    <Property Name="email" Type="varchar" MaxLength="60" />
+  </EntityType>
+  <EntityType Name="Item_atendimento">
+    <Key>
+      <PropertyRef Name="pk_id_item_atendimento" />
+    </Key>
+    <Property Name="pk_id_item_atendimento" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="quantidade" Type="int" />
+    <Property Name="fk_id_atendimento" Type="int" />
+    <Property Name="valor" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="fk_id_servico" Type="int" />
+  </EntityType>
+  <EntityType Name="Servico">
+    <Key>
+      <PropertyRef Name="pk_id_servico" />
+    </Key>
+    <Property Name="pk_id_servico" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="varchar" MaxLength="100" />
+    <Property Name="valor" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="tempo_medio_execucao" Type="float" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Atendimento_Cliente">
+    <End Role="Cliente" Type="sad_cabeleireiroModel.Store.Cliente" Multiplicity="0..1" />
+    <End Role="Atendimento" Type="sad_cabeleireiroModel.Store.Atendimento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="pk_id_cliente" />
+      </Principal>
+      <Dependent Role="Atendimento">
+        <PropertyRef Name="fk_id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Atendimento_Funcionario">
+    <End Role="Funcionario" Type="sad_cabeleireiroModel.Store.Funcionario" Multiplicity="0..1" />
+    <End Role="Atendimento" Type="sad_cabeleireiroModel.Store.Atendimento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Funcionario">
+        <PropertyRef Name="pk_id_funcionario" />
+      </Principal>
+      <Dependent Role="Atendimento">
+        <PropertyRef Name="fk_id_funcionario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_atendimento_Atendimento">
+    <End Role="Servico" Type="sad_cabeleireiroModel.Store.Servico" Multiplicity="0..1" />
+    <End Role="Item_atendimento" Type="sad_cabeleireiroModel.Store.Item_atendimento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Servico">
+        <PropertyRef Name="pk_id_servico" />
+      </Principal>
+      <Dependent Role="Item_atendimento">
+        <PropertyRef Name="fk_id_servico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_atendimento_Atendimento1">
+    <End Role="Atendimento" Type="sad_cabeleireiroModel.Store.Atendimento" Multiplicity="0..1" />
+    <End Role="Item_atendimento" Type="sad_cabeleireiroModel.Store.Item_atendimento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Atendimento">
+        <PropertyRef Name="pk_id_atendimento" />
+      </Principal>
+      <Dependent Role="Item_atendimento">
+        <PropertyRef Name="fk_id_atendimento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,59 @@
+﻿@model SadCabelereiro.Models.Servico
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create","Servico", FormMethod.Post, new {enctype = "multipart/form-data"})) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Servico</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.pk_id_servico)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pk_id_servico)
+            @Html.ValidationMessageFor(model => model.pk_id_servico)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.descricao)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.descricao)
+            @Html.ValidationMessageFor(model => model.descricao)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.valor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.valor)
+            @Html.ValidationMessageFor(model => model.valor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.tempo_medio_execucao)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.tempo_medio_execucao)
+            @Html.ValidationMessageFor(model => model.tempo_medio_execucao)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
