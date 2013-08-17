@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="sad_cabeleireiroModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="sad_cabeleireiroModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="sad_cabeleireiroModelStoreContainer">
           <EntitySet Name="Atendimento" EntityType="sad_cabeleireiroModel.Store.Atendimento" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Cliente" EntityType="sad_cabeleireiroModel.Store.Cliente" store:Type="Tables" Schema="dbo" />
@@ -21,11 +21,11 @@
             <End Role="Atendimento" EntitySet="Atendimento" />
           </AssociationSet>
           <AssociationSet Name="FK_Item_atendimento_Atendimento" Association="sad_cabeleireiroModel.Store.FK_Item_atendimento_Atendimento">
-            <End Role="Servico" EntitySet="Servico" />
+            <End Role="Atendimento" EntitySet="Atendimento" />
             <End Role="Item_atendimento" EntitySet="Item_atendimento" />
           </AssociationSet>
-          <AssociationSet Name="FK_Item_atendimento_Atendimento1" Association="sad_cabeleireiroModel.Store.FK_Item_atendimento_Atendimento1">
-            <End Role="Atendimento" EntitySet="Atendimento" />
+          <AssociationSet Name="FK_Item_atendimento_Servico" Association="sad_cabeleireiroModel.Store.FK_Item_atendimento_Servico">
+            <End Role="Servico" EntitySet="Servico" />
             <End Role="Item_atendimento" EntitySet="Item_atendimento" />
           </AssociationSet>
         </EntityContainer>
@@ -34,12 +34,12 @@
             <PropertyRef Name="pk_id_atendimento" />
           </Key>
           <Property Name="pk_id_atendimento" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="valor" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="data_created" Type="datetime" />
-          <Property Name="data" Type="datetime" />
-          <Property Name="hora" Type="time" />
           <Property Name="fk_id_cliente" Type="int" />
           <Property Name="fk_id_funcionario" Type="int" />
+          <Property Name="valor" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="data_created" Type="datetime" />
+          <Property Name="data" Type="date" />
+          <Property Name="hora" Type="time" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
@@ -47,10 +47,10 @@
           </Key>
           <Property Name="pk_id_cliente" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="nome" Type="varchar" MaxLength="60" />
-          <Property Name="telefone" Type="varchar" MaxLength="20" />
           <Property Name="email" Type="varchar" MaxLength="60" />
           <Property Name="sexo" Type="varchar" MaxLength="20" />
           <Property Name="data_nascimento" Type="date" />
+          <Property Name="telefone" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Funcionario">
           <Key>
@@ -66,10 +66,10 @@
             <PropertyRef Name="pk_id_item_atendimento" />
           </Key>
           <Property Name="pk_id_item_atendimento" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="quantidade" Type="int" />
           <Property Name="fk_id_atendimento" Type="int" />
-          <Property Name="valor" Type="decimal" Precision="10" Scale="2" />
           <Property Name="fk_id_servico" Type="int" />
+          <Property Name="quantidade" Type="int" />
+          <Property Name="valor" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="Servico">
           <Key>
@@ -115,18 +115,6 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Item_atendimento_Atendimento">
-          <End Role="Servico" Type="sad_cabeleireiroModel.Store.Servico" Multiplicity="0..1" />
-          <End Role="Item_atendimento" Type="sad_cabeleireiroModel.Store.Item_atendimento" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Servico">
-              <PropertyRef Name="pk_id_servico" />
-            </Principal>
-            <Dependent Role="Item_atendimento">
-              <PropertyRef Name="fk_id_servico" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Item_atendimento_Atendimento1">
           <End Role="Atendimento" Type="sad_cabeleireiroModel.Store.Atendimento" Multiplicity="0..1" />
           <End Role="Item_atendimento" Type="sad_cabeleireiroModel.Store.Item_atendimento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -138,8 +126,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+        <Association Name="FK_Item_atendimento_Servico">
+          <End Role="Servico" Type="sad_cabeleireiroModel.Store.Servico" Multiplicity="0..1" />
+          <End Role="Item_atendimento" Type="sad_cabeleireiroModel.Store.Item_atendimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servico">
+              <PropertyRef Name="pk_id_servico" />
+            </Principal>
+            <Dependent Role="Item_atendimento">
+              <PropertyRef Name="fk_id_servico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="sad_cabeleireiroModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -174,7 +173,7 @@
           <Property Name="pk_id_atendimento" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="valor" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="data_created" Type="DateTime" Precision="3" />
-          <Property Name="data" Type="DateTime" Precision="3" />
+          <Property Name="data" Type="DateTime" Precision="0" />
           <Property Name="hora" Type="Time" Precision="7" />
           <Property Name="fk_id_cliente" Type="Int32" />
           <Property Name="fk_id_funcionario" Type="Int32" />

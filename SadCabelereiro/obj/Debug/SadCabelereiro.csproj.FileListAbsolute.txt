@@ -28,3 +28,33 @@ c:\users\samuel\documents\visual studio 2012\Projects\SadCabelereiro\SadCabelere
 c:\users\samuel\documents\visual studio 2012\Projects\SadCabelereiro\SadCabelereiro\obj\Debug\SadCabelereiro.csprojResolveAssemblyReference.cache
 c:\users\samuel\documents\visual studio 2012\Projects\SadCabelereiro\SadCabelereiro\obj\Debug\SadCabelereiro.dll
 c:\users\samuel\documents\visual studio 2012\Projects\SadCabelereiro\SadCabelereiro\obj\Debug\SadCabelereiro.pdb
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\SadCabelereiro.dll
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\SadCabelereiro.pdb
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\Antlr3.Runtime.dll
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\EntityFramework.dll
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\Newtonsoft.Json.dll
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\System.Net.Http.Formatting.dll
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\System.Web.Http.dll
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\System.Web.Http.WebHost.dll
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\System.Web.Mvc.dll
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\System.Web.Optimization.dll
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\System.Web.Providers.dll
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\System.Web.Razor.dll
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\System.Web.WebPages.dll
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\System.Web.WebPages.Razor.dll
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\WebGrease.dll
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\EntityFramework.xml
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\Newtonsoft.Json.xml
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\System.Net.Http.Formatting.xml
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\System.Web.Http.xml
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\System.Web.Http.WebHost.xml
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\System.Web.Mvc.xml
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\System.Web.Razor.xml
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\System.Web.WebPages.xml
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\bin\System.Web.WebPages.Razor.xml
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\obj\Debug\SadCabelereiro.csprojResolveAssemblyReference.cache
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\obj\Debug\SadCabelereiro.dll
+C:\Users\Ericocasa\Desktop\projeto_git\estudo\SadCabelereiro\obj\Debug\SadCabelereiro.pdb

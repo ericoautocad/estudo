@@ -31,7 +31,7 @@
     <Property Name="pk_id_atendimento" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="valor" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="data_created" Type="DateTime" Precision="3" />
-    <Property Name="data" Type="DateTime" Precision="3" />
+    <Property Name="data" Type="DateTime" Precision="0" />
     <Property Name="hora" Type="Time" Precision="7" />
     <Property Name="fk_id_cliente" Type="Int32" />
     <Property Name="fk_id_funcionario" Type="Int32" />
